@@ -1,0 +1,98 @@
+############## definicion de una app desde python########
+def run():
+	pass
+
+
+if __name__ == '__main__':
+	run()
+
+############################################################
+
+numero1 = input("escribe un numero: ")
+numero2 = input("escribe otro numero: ")
+
+numero1 = int(numero1)
+numero2 = int(numero2)
+
+numero3 = numero1 + numero2
+
+numero_decimal = 4.534
+numero_decimal = round(numero_decimal,2)
+numero_decimal = str(numero_decimal)
+numero_decimal = float(numero_decimal)
+
+nombre.upper()
+nombre.capitalize()
+nombre.lower()
+nombre.replace('o','a')
+nombre[0]
+nombre[2:5]
+nombre[:5]
+nombre[2:]
+nombre[2:5:2] /pasos de 2 en dos
+nombre[::] /de inicio a final
+nombre[::-1] /pasos de -1 revierte el texto
+len(nombre)
+
+contador += 1
+
+potencia -> **
+% -> modulo
+
+if condicion:
+	sentencias
+elif condicion:
+	sentencias
+else:
+	sentencias
+
+while condicion:
+	sentencias
+
+for contador in range(0,1000):
+	print(contador)
+
+for letra in nombre:
+	print(letra)
+
+
+break
+continue
+
+lista = [1,2,5,7]
+lista.append(9) /agrega el 9 al final
+lista.pop(2) /borra el objeto de posicion 2
+lista[::-1] /concatena listas
+lista*5 /multiplica la lista
+
+tupla = (1,2,3,4,5) /es estatico, no se puede modificar
+
+diccionario = {
+	'llave1': 1,
+	'llave2': 2,
+	'llave3': 3,
+}
+diccionario['llave1']
+diccionario['llave2']
+diccionario['llave3']
+
+for llave in diccionario.keys():
+	print(llave)
+
+for valor in diccionario.values():
+	print(valor)
+
+for llave,valor in diccionario.items():
+	print(llave)
+	print(valor)
+
+import random
+numero = random.randint(1,50)
+caracter = random.choice(listacaracteres)
+
+listaatexto = "".join(listacaracteres)
+
+MAYUS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z']
+MINUS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z']
+NUMS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+CHARS = ['*', '+', '-', '/', '@', '_', '?', '!', '[', '{', '(', ')', '}', ']', ',', ';', '.', '>', '<', '~', '°', '^', '&', '$', '#', '"']
