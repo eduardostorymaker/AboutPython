@@ -96,3 +96,97 @@ MAYUS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', '
 MINUS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z']
 NUMS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 CHARS = ['*', '+', '-', '/', '@', '_', '?', '!', '[', '{', '(', ')', '}', ']', ',', ';', '.', '>', '<', '~', '°', '^', '&', '$', '#', '"']
+
+
+
+
+#######################
+Intermedio
+#######################
+
+#abrir python con git bash
+python -i
+winpty python
+
+#crear un entorno virtual, se creara una carpeta venv
+py -m venv venv
+#git
+python -m venv venv
+
+#activar el entorno virtual
+.\venv\Scripts\activate
+#git
+cd env/Scripts
+. activate
+
+#desactivar el entorno virtual
+deactivate
+
+##############
+#dependencias con pip
+#instalar dependencias con el entorno virtual activado
+
+#ver dependencias que tenemos instalada
+pip freeze
+
+#instalar pandas
+pip install pandas
+
+#crear un archivo requerimientos para compartir las dependencias a otra persona
+#requirements.txt es como el package.json
+pip freeze > requirements.txt
+
+#si quieres instalar las dependencias
+pop install -r requirements.txt
+
+##############################
+#Comprenhensions
+###########################
+
+#listas
+# [element for element in iterable if condition]
+[i**2 for i in range(1,101) if i%3 != 0]
+#poner en lista los i al cuadrado de la iteracion de los i en el range(1,101) si cumplen la condicion que no son divisibles por tres
+[i for i in range(1,100000) if i%4 == 0 and i%6 == 0 and i%9 ==0]
+#multiplos de 4 que son de 6 y de 9 hasta 5 digitos
+
+#diccionarios
+#{key: value for value in iterable if condition}
+{i:i**2 for i in range(1,101) if i%3 != 0}
+#poner en diccionario los i al cuadrado de la iteracion de los i en el range(1,101) si cumplen la condicion que no son divisibles por tres
+{i:i**(1/2) for i in range(1,1001) if True}
+{i:i**(1/2) for i in range(1,1001)}
+#llaves 1000 primeros numeros y valor la raiz cuadrada
+
+
+##############################
+#Lambda (funciones anonimas)
+###########################
+#solo puede tener una linea de codigo
+#identificador = lambda argumentos: sentenciaaretornar
+palindromo = lambda cadena: cadena == cadena[::-1]
+print(palindromo('ana'))
+#verificando si es un palindromo
+
+##############################
+#funciones de orden superior (funciones como argumento)
+###########################
+#filter
+#filter(functioncondition,list)
+lista = [1,2,3,4,5,6]
+list(filter(lambda num:num%2=0,lista))
+#filter filtra los numeros pares, pero list los guarda en una lista
+
+#map
+#map(functioncondition,list)
+lista = [1,2,3,4,5,6]
+list(map(lambda num:num**2,lista))
+#map modifica los numeros, al cuadrado, pero list los guarda en una lista
+
+#reduce
+#reduce(functioncondition,list)
+from functools import reduce
+lista = [1,2,3,4,5,6]
+reduce(lambda a,b:a*b,lista)
+#Reduce ejecuta la sentencia en cada iteracion, en este caso ultiplica toda la lista
+#a guarda el resultado anterior acumulado
