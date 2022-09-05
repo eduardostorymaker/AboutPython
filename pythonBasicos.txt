@@ -25,6 +25,8 @@ nombre.upper()
 nombre.capitalize()
 nombre.lower()
 nombre.replace('o','a')
+nombre.strip()
+nombre.strip("/n")
 nombre[0]
 nombre[2:5]
 nombre[:5]
@@ -33,6 +35,7 @@ nombre[2:5:2] /pasos de 2 en dos
 nombre[::] /de inicio a final
 nombre[::-1] /pasos de -1 revierte el texto
 len(nombre)
+ingreso.isnumeric() /devuelve verdadero si el un numero
 
 contador += 1
 
@@ -75,6 +78,8 @@ diccionario = {
 diccionario['llave1']
 diccionario['llave2']
 diccionario['llave3']
+diccionario.get('llave1')
+diccionario.get('llave5','valor no determinado')
 
 for llave in diccionario.keys():
 	print(llave)
@@ -190,3 +195,79 @@ lista = [1,2,3,4,5,6]
 reduce(lambda a,b:a*b,lista)
 #Reduce ejecuta la sentencia en cada iteracion, en este caso ultiplica toda la lista
 #a guarda el resultado anterior acumulado
+
+
+##############################
+#Errores
+###########################
+###try/except/raise/finally
+
+try:
+	print(palindromo(1))
+except TypeError:
+	print("Solo se puede ingresar strings")
+
+try:
+	if len(cadena) == 0:
+		raise ValueError("no se puede ingresar cadenas vacias")
+	return string == string[::-1]
+except ValueError as ve:
+	print(ve)
+	return false
+	
+try:
+	f = open("archivo.txt")
+finally:
+	f.close()
+
+###assert (afirmaciones)
+#manera mas simple, el codigo se sigue ejecutando si la condicion es verdadera sino devuelve el mensaje como error
+
+def palindromo(cadena):
+	assert len(cadena)>0, "no se puede ingresar una cadena vacia"
+	return cadena == cadena[::-1]
+
+print palindromo("")
+
+##############################
+#Archivos
+###########################
+
+#R(lectura ) W(sobreescritura) A(escritura adiciona al final)
+
+#leer lista de numeros
+numbers = []
+with open("./ruta/del/archivo.txt, "r") as f:
+	for line in f:
+		numbers.append(int(line))
+	print(numbers)
+
+#crear un archivo con una lista de nombre
+names =  ["facundo","eduardo","luis","pepe","rocío"]
+with open("./ruta/del/archivo.txt, "w", encoding ="utf-8") as f:
+	for name in names:
+		f.write(name)
+		f.write("\n")
+
+
+##############################
+#Enumerate
+###########################
+#crea una numeracion consecutiva sobre una lista
+lista=["a","b","c","d"]
+list(enumerate(lista,100))
+#[(0, 'a'), (1, 'b'), (2, 'c'), (3, 'd')]
+
+#se puede indicar el numero de inicio
+list(enumerate(lista,100))
+#[(100, 'a'), (101, 'b'), (102, 'c'), (103, 'd')]
+
+##############################
+#Limpiar pantalla
+###########################
+#windows
+os.system("cls")
+#unix
+os.system("clear")
+
+
