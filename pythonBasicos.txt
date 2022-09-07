@@ -37,6 +37,60 @@ nombre[::-1] /pasos de -1 revierte el texto
 len(nombre)
 ingreso.isnumeric() /devuelve verdadero si el un numero
 
+f'cadena de texto {variable}'
+
+------------------------------
+operadores
+------------------------------
+suma
++
+resta
+-
+multiplicacion
+*
+divison
+/
+modulo
+%
+division entero
+//
+potencia
+**
+comparacion
+==
+Logicos
+y
+and
+o
+or
+negacion
+not
+
+---------------
+incrementales
+---------------
+count += 1 
+
+--------------------------
+detener y pasar
+-------------------------
+break
+continue
+
+type(variable) /tipo de variable
+iter(variable) /vuelve a una variable en un iterador
+
+frutas = ['manzana','pera','mango']
+iterador = iter(frutas)
+next(iterador)
+#manzana
+next(iterador)
+#pera
+next(iterador)
+#mango
+next(iterador)
+#stop iteration
+
 contador += 1
 
 potencia -> **
