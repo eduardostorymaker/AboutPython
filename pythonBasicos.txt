@@ -21,6 +21,8 @@ numero_decimal = round(numero_decimal,2)
 numero_decimal = str(numero_decimal)
 numero_decimal = float(numero_decimal)
 
+del variable /borra la variable
+
 nombre.upper()
 nombre.capitalize()
 nombre.lower()
