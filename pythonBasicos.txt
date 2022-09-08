@@ -31,6 +31,7 @@ nombre.strip()
 nombre.strip("/n")
 nombre[0]
 nombre[2:5]
+nombre[1:-1] /menos uno atras y menos unp adelante
 nombre[:5]
 nombre[2:]
 nombre[2:5:2] /pasos de 2 en dos
@@ -38,6 +39,12 @@ nombre[::] /de inicio a final
 nombre[::-1] /pasos de -1 revierte el texto
 len(nombre)
 ingreso.isnumeric() /devuelve verdadero si el un numero
+
+"Numbers: {0} {1} {2}". format(5, 7, 9) /Numbers: 5 7 9
+"Numbers: {x} {y} {z}". format(x=5, y=7, z=9) /Numbers: 5 7 9
+
+texto = ", ".join(["uno","dos","tres"]) / uno, dos, tres
+texto.split(", ") = ["uno","dos","tres"]
 
 cadena = "texto largo"
 "texto" in cadena /True
@@ -114,6 +121,7 @@ while condicion:
 list(Range(5)) /[0,1,2,3,4]
 list(Range(1,5)) /[1,2,3,4]
 list(Range(1,5,2)) /[1,3]
+list(Range(7,3,-1)) /[7,6,5,4]
 
 for contador in range(0,1000):
 	print(contador)
@@ -129,8 +137,15 @@ lista = [1,2,5,7]
 5 in lista /true
 lista.append(9) /agrega el 9 al final
 lista.pop(2) /borra el objeto de posicion 2
+lista.insert(0,9) /inserta 9 en la posicion 9
+lista.index(2) /devuelve el indice del primer valor 2 -> 1 
 lista[::-1] /concatena listas
 lista*5 /multiplica la lista
+max(lista) /devuelve el mayor valor -> 7
+min(lista) /devuelve el menor valor -> 1
+lista.count(5) /cuenta cuantas veces se repite el valor 5
+lista.remove(7) /remueve el primer item que encuentra con ese valor
+lista.reverse() /invierte el orden de la lista
 
 tupla = (1,2,3,4,5) /es estatico, no se puede modificar
 
