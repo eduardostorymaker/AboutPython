@@ -113,6 +113,7 @@ while condicion:
 	
 list(Range(5)) /[0,1,2,3,4]
 list(Range(1,5)) /[1,2,3,4]
+list(Range(1,5,2)) /[1,3]
 
 for contador in range(0,1000):
 	print(contador)
