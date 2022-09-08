@@ -39,6 +39,8 @@ nombre[::-1] /pasos de -1 revierte el texto
 len(nombre)
 ingreso.isnumeric() /devuelve verdadero si el un numero
 
+cadena = "texto largo"
+"texto" in cadena /True
 f'cadena de texto {variable}'
 
 ------------------------------
