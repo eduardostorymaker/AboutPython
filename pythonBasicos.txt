@@ -119,6 +119,7 @@ break
 continue
 
 lista = [1,2,5,7]
+5 in lista /true
 lista.append(9) /agrega el 9 al final
 lista.pop(2) /borra el objeto de posicion 2
 lista[::-1] /concatena listas
