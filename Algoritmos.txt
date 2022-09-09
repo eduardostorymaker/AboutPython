@@ -1,0 +1,12 @@
+Enumeracion exhaustiva - probar todas las posibilidades hasta encontrar la respuesta
+Aproximacion - utilizas enumeracion exhaustiva, pero para acercarte al valor utilizar un margen de error
+Busqueda binaria - acortas a la mitad la busqueda que necesitas
+
+Pruebas de caja negra
+-le das entrasdas y esperas ciertas salidas
+-unit testing o integration testing
+
+Pruebas de caja de ccristal
+-flujo de programa
+-caminos posibles
+-regression testing o mocks
