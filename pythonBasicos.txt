@@ -133,6 +133,7 @@ for letra in nombre:
 break
 continue
 
+///////listas
 lista = [1,2,5,7]
 5 in lista /true
 lista.append(9) /agrega el 9 al final
@@ -147,13 +148,37 @@ lista.count(5) /cuenta cuantas veces se repite el valor 5
 lista.remove(7) /remueve el primer item que encuentra con ese valor
 lista.reverse() /invierte el orden de la lista
 
+///////tuplas
 tupla = (1,2,3,4,5) /es estatico, no se puede modificar
+tupla2 = "uno", "dos", "tres"
+a,b,c = tupla2 / a="uno", b="dos", c="tres"
+a,b,*c,d = [1,2,3,4,5,6,7,8,9] / a=1, b=2, c=[3, 4, 5, 6, 7, 8], d=9
 
+///////sets
+//no tiene valores repetidos
+miset = {1,1,1,1,1,1,1,2,3,4,5,5,5,5,5,5} /{1, 2, 3, 4, 5}
+3 in miset / true
+miset.add(6) /{1, 2, 3, 4, 5, 6}
+miset.remove(2) //{1, 3, 4, 5, 6}
+
+uno = {1,2,3,4,5,6}
+dos = {4,5,6,7,8,9}
+print(uno|dos) /{1, 2, 3, 4, 5, 6, 7, 8, 9}
+print(uno&dos) /{4, 5, 6}
+print(uno-dos) /{1, 2, 3}
+print(uno-dos) /{1, 2, 3}
+print(dos-uno) /{8, 9, 7}
+print(dos^uno) /{1, 2, 3, 7, 8, 9}
+
+///////diccionarios
 diccionario = {
 	'llave1': 1,
 	'llave2': 2,
 	'llave3': 3,
 }
+//agregar datos
+diccionario['llave4'] = 4
+//consultas
 diccionario['llave1']
 diccionario['llave2']
 diccionario['llave3']
@@ -251,6 +276,8 @@ pop install -r requirements.txt
 palindromo = lambda cadena: cadena == cadena[::-1]
 print(palindromo('ana'))
 #verificando si es un palindromo
+#asigando el lambda ejecutado con un valor(6) y devolviendo el cuadrado a una variable
+a = (lambda x: x**2)(6)
 
 ##############################
 #funciones de orden superior (funciones como argumento)
@@ -349,4 +376,73 @@ os.system("cls")
 #unix
 os.system("clear")
 
+##############################
+#Generators
+###########################
 
+def countdown():
+    i=5
+    while i>0:
+        yield i
+        i -=1
+
+for i in countdown():
+    print(i)
+    
+#imprime del 5 al 1
+#yield se utiza como generador reemplaza al return por una funcion
+
+##############################
+#Decorators
+###########################
+#pasar y devolver funciones entre codigos
+
+def decor(func):
+    def wrap():
+        print("==============")
+        func()
+        print("==============")
+    return wrap
+
+def print_text():
+    print("Hola Mundo")
+decorated = decor(print_text)
+
+#el bloque anterior se puede reemplazar por el siguiente, auq aun no se como ejecutarlo
+#@decor
+#def print_text():
+#    print("Hola Mundo")
+
+
+#Devuelve
+#==============
+#Hola Mundo
+#==============
+
+
+##############################
+#*args, **Kwargs
+###########################
+def alotofarguments(argument1,*theotherones):
+    print(argument1)
+    print(theotherones)
+
+alotofarguments(1,2,3,4,5,6,7,8)
+#1
+#(2,3,4,5,6,7,8)
+#la segunda variable devuelve una tupla
+
+#####
+def alotofarguments(x,y=7,*args, **Kwargs):
+    #y toma el valor por defecto de 7 si no encuentra valor de ingreso
+    print(Kwargs)
+    print(args)
+    print(x)
+    print(y)
+
+alotofarguments(2,3,4,5,6,a=7,b=8)
+
+#{'a': 7, 'b': 8}
+#(4, 5, 6)
+#2
+#3
