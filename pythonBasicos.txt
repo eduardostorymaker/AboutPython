@@ -547,3 +547,55 @@ class PruebaDeCristalTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+
+###########################
+#Tipado estatico
+######################
+#desde py 3.6, pero aun no devuelve error
+#para que devuelva error utilizar el modulo mypy -> pip install mypy -> ejecutar -> py archivo.py --check-untyped-defs
+a: int = 5
+b: str = 'hola'
+c: bool = True
+
+def suma(a:int,b:int) -> int:
+	return a+b
+
+
+#desde py 3.9
+from typing import Dict, List, Tuple
+
+positives: list[int] = [1,2,3,4,5]
+
+users: Dict[str,int] = {
+	'argentina': 1,
+	'mexico': 2
+}
+
+countries: List[Dict[str,str]] = [
+	{
+		'name': 'argentina'
+		'people': '450000'
+	},
+	{
+		'name': 'colombia'
+		'people': '900000'
+	}
+]
+
+numbers: Tuple[int,float,int] = (1,0.5,1)
+
+
+CoordinatesType: List[Dict[str,Tuple[int,int]]]
+
+coodinates: CoordinatesType = [
+	{
+		'coord1': (1,2),
+		'coord1': (3,5)
+	}
+	{
+		'coord1': (0,3),
+		'coord1': (1,2)
+	}
+] 
