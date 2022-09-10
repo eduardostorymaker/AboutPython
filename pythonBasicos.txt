@@ -599,3 +599,126 @@ coodinates: CoordinatesType = [
 		'coord1': (1,2)
 	}
 ] 
+
+###########################
+#Closure
+######################
+#debemos tener una nested function
+#la nested function debe referenciar un valor de un scope superior
+#la función que envuelve la nested debe retornarla también
+
+def make_multiplier(x):
+	
+	def multiplier(n):
+		return n*x
+
+	return multiplier
+
+times10 = multiplier(10)
+times4 = multiplier(4)
+
+print(times10(3))
+print(times4(5))
+print(times10(times4(2)))
+
+###########################
+#Decoradores
+######################
+
+def decorador(func):
+    def envoltura():
+        print("Esto se añade a mi función original.")
+        func()
+    return envoltura
+
+def saludo():
+    print("¡Hola!")
+
+saludo()
+# Salida:
+# ¡Hola!
+
+saludo = decorador(saludo) # Se guarda la función decorada en la variable saludo
+saludo()                   # La función saludo está ahora decorada
+# Salida:
+# Esto se añade a mi función original.
+# ¡Hola!
+
+##########################
+##sugar sintaxis
+def decorador(func):
+    def envoltura():
+        print("Esto se añade a mi función original.")
+        func()
+    return envoltura
+
+@decorador
+def saludo():
+    print("¡Hola!")
+
+saludo()
+# Salida:
+# Esto se añade a mi función original.
+# ¡Hola!
+
+##ejemplo
+
+def mayusculas(func):
+	def envoltura(texto):
+		return func(texto).upper()
+	return envoltura
+
+@mayusculas
+def mensaje(nombre):
+	return f'{nombre}, recibiste un mensaje'
+
+print(mensaje('Cesar'))
+
+#CESAR, RECIBISTE UN MENSAJE
+
+
+###Tiempo de ejecucion
+
+from datetime import datetime
+
+def execution_time(func):
+	df wrapper(*args,**kwargs):
+		initial_time = datetime.now()
+		func(*args,**kwargs)
+		final_time = datetime.now()
+		time_elapsed = final_time - initial_time
+		print("Pasaron "+str(time_elapsed.total_seconds())+" segundos")
+	return wrapper
+
+@execution_time
+def random_func():
+	for _ in range(1,100000)
+		pass
+
+@execution_time
+def suma(a: int,b: int) -> int:
+	return a + b
+
+random_func()
+suma(a+b)
+
+####### si se le pasa un parametro al decorador
+
+def with_custom_message(message):
+    def with_message(function):
+        print(f"{message}:")
+        def wrapper(*args,**kwargs):
+            function(*args,**kwargs)
+        return wrapper
+    return with_message
+
+@with_custom_message("Hello")
+def multiply(a,b):
+    c=a*b
+    print(f"The result of {a} * {b} is {c}")
+
+multiply(10,2)
+
+
+			
+
