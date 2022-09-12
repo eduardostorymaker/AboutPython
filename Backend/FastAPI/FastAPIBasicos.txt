@@ -1,0 +1,69 @@
+#####################
+###Parte teorica
+#FastAPI esta creada sobre uvicorn, starlette y pydantic
+#Funciona con la documentacion de OpenAPI, sobre el software de Swagger(Redoc es otra alternativa)
+#para acceder a la documentacion en linea
+#swagger
+http://127.0.0.1:8000/doc
+#Redoc
+http://127.0.0.1:8000/redoc
+
+#PATH -> lo que se coloca luego del dominio son paths, para la API, se coloca API
+#tambien se pueden llamar Path / Routes / Endponints
+
+#OPERATIONS/METHODS -> operaciones que se realizan en HTTP
+GET, POST, PUT, DeLETE... tambien OPTIONS, HEAD, PATCH, TRACE
+
+#PATH OPERATION PYTHON, se divide en dos, el decorador y la funcion
+#el decorador manda a la operacion y el path la funcion
+
+#Path operation decorator
+@app.get("/")
+
+#Path operation function
+def home():
+    return {"Hello":"Wold"}
+
+#PATH PARAMETER
+#/tweets/{tweet_id} -> path parameter -> variable dentro del path
+
+#QUERY PARAMETER
+#/tweets/{user_id}/detail?age=20&height=184 -> parametros opcionales en un query
+
+#HTTP tiene HEADER Y BODY (request y response)
+
+#PYDANTIC
+#Para poder utilizar el modelo relacion, se tiene que importar BaseModel de Pydantic
+
+##############
+##Montando un servidor basico
+
+#creacion del entorno virtual en gitbash
+python -m venv venv
+cd ./venv/scripts
+. activate
+cd ..
+cd ..
+
+#instalacion del framework fastapi y uvicorn
+pip install fastapi uvicorn
+
+#crear un archivo main.py para que se ejecute en el servidor
+from fastapi import FastAPI
+
+##########
+app = FastAPI()
+@app.get("/")
+def home():
+    return {"Hello":"Wold"}
+##########
+
+#Montar el motor en el local host con uvicorn
+uvicorn main:app --reload
+
+#ingresar al localhost que genero uvicorn http://127.0.0.1:8000/
+#mostrara el json que se creo en return
+
+##################
+
+

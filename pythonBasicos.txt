@@ -172,11 +172,23 @@ a,b,*c,d = [1,2,3,4,5,6,7,8,9] / a=1, b=2, c=[3, 4, 5, 6, 7, 8], d=9
 tupla = (1,) / si se ingresa integer = (1), resulta un integer, la tupla debe de tener comas (tupla de un valor)
 
 ///////sets
-//no tiene valores repetidos
+//no tiene valores repetidos y son inmutables
 miset = {1,1,1,1,1,1,1,2,3,4,5,5,5,5,5,5} /{1, 2, 3, 4, 5}
 3 in miset / true
+/añadir 1 elemento
 miset.add(6) /{1, 2, 3, 4, 5, 6}
+/eliminar un elemento existente, si no esta en la lista envia error
 miset.remove(2) //{1, 3, 4, 5, 6}
+/eliminar un elemento inexistente, si esta en la lista, lo borra, si no esta, devuelve el mismo set
+miset.discard(2) 
+/elimina un elemento aleatorio
+miset.pop()
+/borra todo el set
+miset.clear()
+
+/añadir multiples elementos
+miset.update([1,2,3])
+miset.update((1,2,3),{4,5})
 
 /para crear un set vacio se debe de utilizar un constructor, {}, esto crea un diccionario vacio
 miset = set()
@@ -186,9 +198,19 @@ dos = {4,5,6,7,8,9}
 print(uno|dos) /{1, 2, 3, 4, 5, 6, 7, 8, 9}
 print(uno&dos) /{4, 5, 6}
 print(uno-dos) /{1, 2, 3}
-print(uno-dos) /{1, 2, 3}
 print(dos-uno) /{8, 9, 7}
 print(dos^uno) /{1, 2, 3, 7, 8, 9}
+
+//otra opcion
+set1.union(set2)
+set1.symmetric_difference(set2)
+set1.difference(set2)
+set1.intersection(set2)
+
+/para convertir una lista en set
+miset = set(lista)
+/convertir tupla en set
+miset = set(tupla)
 
 ///////diccionarios
 diccionario = {
@@ -422,6 +444,70 @@ for i in countdown():
     
 #imprime del 5 al 1
 #yield se utiza como generador reemplaza al return por una funcion
+
+
+def my_gen():
+
+  """un ejemplo de generadores"""
+
+  print('Hello world!')
+  n = 0
+  yield n # es exactamente lo mismo que return pero detiene la función, cuando se vuelva a llamar a la función, seguirá desde donde se quedó
+
+  print('Hello heaven!')
+  n = 1
+  yield n
+
+  print('Hello hell!')
+  n = 2
+  yield n
+
+
+a = my_gen()
+print(next(a)) # Hello world!
+print(next(a)) # Hello heaven!
+print(next(a)) # Hello hell!
+print(next(a)) StopIteration
+
+########Generator expresions
+lista = [0,1,2,3,4,5]
+
+lista_comprensiones = [x*2 for x in lista]
+generador_comprensiones = (x*2 for x in lista)
+
+#la diferencia entre los dos es que un generador es un iterador, y los iteradores extraen los datos uno a la vez
+#las listas almacenan todos los datos
+
+
+########Fibonacci Generator, es la manera mas facil de crear un iterador, ver fibonacci iterator
+import time
+
+def FibonacciGenerator(max = None):
+    n1 = 0
+    n2 = 1
+    counter = 0
+
+    while True:
+        if counter <= max-1 and max > 0:
+            if counter == 0:
+                counter += 1
+                yield n1
+            elif counter == 1:
+                counter += 1
+                yield n2
+            else:
+                aux = n1 + n2
+                counter += 1
+                n1,n2 = n2,aux
+                yield aux
+        else:
+            raise StopIteration
+
+fibonacci = FibonacciGenerator(10)
+
+for element in fibonacci:
+    print(element)
+    #time.sleep(1)
 
 ##############################
 #Decorators
@@ -721,4 +807,43 @@ multiply(10,2)
 
 
 			
+####################
+###Fechas - modulo datetime
+##########
 
+import datetime
+
+#hora universal en utc si no esta configurada en tu pc sino devuelve el de la pc
+my_time = datetime.datetime.now()
+#fecha de ahora
+my_day = datetime.date.today()
+my_day.year
+my_day.month
+my_day.day
+
+#formatos
+#%Y year %m Month %d Day %H hour %M Minute %S Second
+
+from datetime import datetime
+
+my_datetime = datetime.now()
+
+my_str = my_datetime.strftime('%d/%m/%Y')
+print(f'Formato LATM: {my_str}')
+my_str = my_datetime.strftime('%m/%d/%Y')
+print(f'Formato USA: {my_str}')
+my_str = my_datetime.strftime('Estamos en el año %Y')
+print(f'Formato Random: {my_str}')
+
+
+
+#######zonas horarias
+########instalar pytz
+#pip install pytz
+
+from datetime from datetime
+import pytz
+
+bogota_timezone = pytz.timezone("America/Bogota")
+bogota_date = datetime.now(bogota_timezone)
+print("Bogota: ", bogota_date.strftime("%d/%m/%y, %H:%M%S"))
