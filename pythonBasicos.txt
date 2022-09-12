@@ -368,8 +368,37 @@ except ValueError as ve:
 	
 try:
 	f = open("archivo.txt")
+#luego del fallo se puede ejecutar codigo, en este caso para cerrar el archivo	
 finally:
 	f.close()
+
+try:
+    num1 = 8
+    num2 = 0
+    #print(num1/num2)
+    print("hola"/2)
+    print(num1/num2)
+#se puede crear las excepciones a la vez
+except ZeroDivisionError:
+    print("An error zero division ocurred")
+#para agrupar errores, se puede utilizar parentesis
+except (ValueError,TypeError):
+    print("error de valor o tipo")
+    
+ #si no se sabe que error devolvera, se utiliza el except sin parametros
+ try:
+ 	pass
+except:
+	print("Some error ocurred")
+	
+#Tambien se puede utilizar else, ingresa al bloque si no encuentra error, si encuentra error ya no ingresa
+#con error imprime 2, sin errore 1 y 3
+try:
+    print(1)
+except:
+    print(2)
+else:
+    print(3)
 
 ###assert (afirmaciones)
 #manera mas simple, el codigo se sigue ejecutando si la condicion es verdadera sino devuelve el mensaje como error
@@ -379,6 +408,14 @@ def palindromo(cadena):
 	return cadena == cadena[::-1]
 
 print palindromo("")
+
+##RAISE
+#se puede elevar los errores, cuando creas conveniente
+if num > 10:
+	raise ValueError
+#tambien se le puede poner argumentos
+raise NameError("Invalid Name!")
+raise ValueError("Negative")
 
 ##############################
 #Archivos
