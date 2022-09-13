@@ -421,11 +421,56 @@ raise ValueError("Negative")
 #Archivos
 ###########################
 
-#R(lectura ) W(sobreescritura) A(escritura adiciona al final)
+#R(lectura ) W(sobreescritura) A(escritura adiciona al final) WB(escritura binaria - para archivos binarios se agrega la B) 
 
+#####modo sololearn
+file = open("file.txt",r)
+cont = file.read()
+print(cont)
+#se puede leer una cantidad de bytes
+#Each ASCII character is 1 byte
+#imprime los primeros 7 caracteres y luego los siguientes 5 y luego los restantes
+print(file.read(7))
+print(file.read(5))
+print(file.read())
+file.close()
+
+#imprimir lineas
+for line in file.readlines():
+	print(line)
+file.close()	
+
+for line in file:
+	print(line)
+file.close()	
+###
+#crear un nuevo archivo o modificar completamente
+file = open("newfile.txt","w")
+file.write("This has been written to a file")
+file.close()
+
+#adicionar al archivo
+file = open("newfile.txt","a")
+file.write("This has been written to a file")
+file.close()
+
+#devuelve la cantidad de bytes escritos
+amount_written = file.write(msg)
+
+try:
+	f=open("archivo.txt",w)
+	pass
+finally:
+	f.close()
+	
+#otro metodo es usar with y se crea un f temporal, solo accesible en el bloque identado
+with open("archivo.txt", "r") as f:
+	print(f.read())
+
+#####modo platzi
 #leer lista de numeros
 numbers = []
-with open("./ruta/del/archivo.txt, "r") as f:
+with open("./ruta/del/archivo.txt", "r") as f:
 	for line in f:
 		numbers.append(int(line))
 	print(numbers)
