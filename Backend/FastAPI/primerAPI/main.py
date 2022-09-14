@@ -1,36 +1,37 @@
-#Python
-##todas la verificaciones se realizan desde el localhost/docs (swagger)
-#http://127.0.0.1:8000/docs
-#ahi se pueden realizar pruebas manuales
-#si se desea automatizar las pruebas, se crearan clases nuevas dentro de las clases declaradas
-#ver mas abajo en la Clase Person
 
-#importaciones de python para utilizar declaracion de variables
-#Optional para cargar variables opcionales
-#Enum, para poder generar listas enumerables
 from typing import Optional
 from enum import Enum
 
-#Pydantic
-#importacion de pydantic para utilizar el modelo relacional
-#importar Filed para el modelo (formato y validacion) 
 from pydantic import BaseModel
 from pydantic import Field
+from pydantic import EmailStr
 
-#FastAPI
-#importacion de FastApi, para ejecutar una aplicacion y poder utilizar los decoradores en los paths
-#importacion de Body, para dar formato del body html (formato y validacion)
-#importacion del query, para extraer la infomacion del (path) query parameter (formato y validacion)
-#importacion del Path, para extraer la informacon del path parameter (formato y validacion)
+#importamos status para verificar los estados http, se agregan en el decorador
+#importar HTTPException para manejar estado de error HTTP, se eleva con Rise
 from fastapi import FastAPI
-from fastapi import Body, Query, Path
+from fastapi import status
+from fastapi import HTTPException
+from fastapi import Body, Query, Path, Form, Header, Cookie, File, UploadFile
 
-#se crea una instancia app de la clase FastAPI
+######
+# En este curso se aprendio a leer (con formato), los Query, los Path, los Body http
+# los Formularios, los header http, y cookies
+
+# ademas utilizar el base model, para el modelo relacional
+# Field, para validacion de los campos
+# 
+# por ultimo, utilizar las variables Optionales y clases enumeradas
+######
+# Path Parameters
+# Query Parameters
+# Request Body
+# Forms
+# Headers
+# Cookies
+# Files (File - Upload File(Filename - content type - File))
+
 app = FastAPI()
 
-#Models
-
-#creando enumeradores
 class HairColor(Enum):
     white = "white"
     brown = "brown"
@@ -38,34 +39,36 @@ class HairColor(Enum):
     blonde = "blonde"
     red = "red"
 
-#se crea la clase Person que hereda de la clase BaseModel
-class Person(BaseModel):
+#Se crea una clase base para el response model y el esquema
+class PersonBase(BaseModel):
     first_name: str = Field(
         ...,
         min_length=1,
         max_length=50
-        #para los ejemplos de swagger se pueden crear como clases, ver lineas abajo
-        #pero tambien se puede agregar el elemento example
-        #a mi gusto, es mejor crear la clase, ver lineas abajo
-        #example = "Eduardo"
         )
-    last_name: str
+    last_name: str = Field(
+        ...,
+        min_length=1,
+        max_length=50
+        )
     age: int = Field(
         ...,
         gt=0,
         lt=115
     )
-    #sin listas enumerables
-    #hair_color: Optional[str] = None
-    #is_married: Optional[bool] = None
-    #con listas enumarables
+
     hair_color: Optional[HairColor] = Field(default=None)
     is_married: Optional[bool] = Field(default=None)
 
-    #Se puede crear una clase interna, dentro de la clase Person, solo para pruebas
-    #swagger cargara el ejemplo y ya no tendremos que estar rellenando manualmente
-    #se puede generar todos los ejemplos que necesitemos
-    #swagger no soporta ciertas cosas mas modernas como el ingreso del doble JSON, ejemplo del PUT
+#se crea la clase que se pasara al response model
+class PersonOut(PersonBase):
+    pass
+
+#se crea el esquema de persona
+class Person(PersonBase):
+    password: str = Field(...,min_length=8)
+    
+
     class Config:
         schema_extra = {
             "example": {
@@ -73,78 +76,102 @@ class Person(BaseModel):
                 "last_name": "Espinoza",
                 "age": 35,
                 "hair_color":"black",
-                "is_married":True
+                "is_married":True,
+                "password": "12345678"
             }
         }
 
 
-
-#se crea la clase Location que se hereda de la clase BaseModel
 class Location(BaseModel):
     city: str
     state: str
     country: str    
 
-#PATH OPERATION DECORATOR
-#se crea el decorador de la app, metodo get
-@app.get("/")
-#PATH OPERATION FUNCTION
-#Al solitar un GET al servidor con path /, se devuelve la funcion home
-#esta funcion retorna el JSON {"Hello":"Wold"}
+class LoginOut(BaseModel):
+    username: str = Field(..., max_length=20, example = "eduardoespinoza")
+    message: str = Field(default="Login Successfully!")
+
+
+
+@app.get(
+    path = "/",
+    status_code=status.HTTP_200_OK,
+    #DEPRECATE UNA FUNCION. deprecate o rechazar, cuando una funcion es antigua
+    #en vez de borrarla se le suele "drepecar", en swagger aparecera tachado
+    deprecated=True
+    )
 def home():
     return {"Hello":"Wold"}
 
-#se crea el decorador de la app, metodo post
-@app.post("/person/new")
-#Body(...) se le pasa tres puntos para indicar que person es obligatorio
-#pero ya no es obligatorio agregarlo, se deja vacio y es obligatorio por defecto
-#al solicitar el post al servidor, la funcion create_person solicita un body
-#se solicita una person de la clase Person, que sera igual Body(formato) 
-def create_person(person: Person = Body()):
-#se responde con la misma informacion que recibe, person
+##Response Model -> para evitar enviar datos sensibles del usuario, se crea una clase
+#con datos que se puedan enviar y se lo envia en al decorador como respinse model
+#sin response model, devuelve el password, con response model no devuelve el password
+@app.post(
+    path = "/person/new",
+    response_model=PersonOut,
+    status_code=status.HTTP_201_CREATED,
+    #el tag sirve para clasificar los metodos en Swagger, documentacion interactiva
+    tags=["Person"],
+    ##summry sirve para titular los metodos en Swagger, documentacion interactiva
+    summary="Create person in the app"
+    )
+def create_person(person: Person = Body(...)):
+    #hay que poner el docstream en este lugar para que Swagger lo entienda y explicar la funcion
+    """
+    -Titulo: Create Person
+
+    -Descripcion: This path operation creates a peson in the app an save the information in the database
+    
+    -Parametros: Parameters:
+        -Request body parameter:
+            - **person: Person** -> a person model with first name, last name, age, hair color and marital status
+    
+    -Resultado: Returns a person model with first name, last name, age, hair color and marital status
+    """
     return person
 
-#se crea el decorador de la app, metodo get, para path query
-@app.get("/person/detail")
-#al solicitar el get al servidor, se solicita el path query, con informacion
-#name, opcional que sera igual a Query(formato)
-#age, obligatorio que sera igual a Query(formato)
+@app.get(
+    path="/person/detail",
+    status_code=status.HTTP_200_OK,
+    tags=["Person"]
+    )
 def show_person(
-    #validaciones para strings en Query: min_length,max_length, regex(exp regulares)
-    #para los ejemplos de swagger, tambien se puede definir los valores para el path
     name: Optional[str] = Query(None, min_length=1,max_length=50,example="eduardo"),
-    #el año se desea que sea obligatorio, se podria indicar Query(...) pero ya no es necesario
-    #validaciones para integer en Query: ge(>=), le(<=), gt(>0), lt(<)
-    #para los ejemplos de swagger, tambien se puede definir los valores para el path
-    age: int = Query(...,example=35)
-    #en query se puede utilzar parametros como title y description
-    
+    age: int = Query(...,example=35)    
 ):
-#Se devolvera el JSON {name: age}
     return {name: age}
 
-#se crea otro path con la misma ruta q el anterior, pero para path parameter
-# verificar si se ejecutara el get anterior o este get (segun comentarios el primero, segun profe el segundo)
-@app.get("/person/detail/{person_id}")
+
+persons = [1,2,3,4,5]
+
+@app.get(
+    path="/person/detail/{person_id}",
+    status_code=status.HTTP_200_OK,
+    tags=["Person"]
+    )
 def  show_person(
-#se solicita al path entrante una variable que tiene que ser del mismo nombre del definido adelante    
-#se puede el titulo y la descripcion
+
     person_id: int = Path(
         ...,
         gt=0,
         title="Id del usuario",
         description="This is the ID, It's required and greater than 0",
-        #para los ejemplos de swagger, tambien se puede definir los valores para el path
         example=15
         )
 ):
-#se devuelve el JSON {person_id: "It exist!"}
+    if person_id not in persons:
+        #si se verifica que el usuario no existe, se devolvera una excepcion http
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="This persons doesn't exist!"
+        )
     return {person_id: "It exist!"}
 
-#se crea el decorador de la app, metodo put(actualizar), para path parameter
-@app.put("/person/{person_id}")
-#esta vez se solicita la variable del path y el contenido del body
-#se hace una modificacion para se solicite dos JSON (las llaves son las variables) dentro de otro
+@app.put(
+    path="/person/{person_id}",
+    status_code=status.HTTP_200_OK,
+    tags=["Person"]
+    )
 def update_person(
     person_id: int = Path(
         ...,
@@ -155,28 +182,68 @@ def update_person(
     person: Person = Body(...),
     location: Location = Body(...)
 ):
-#se devuelve la misma inforacion que se recibio del body, FASTAPI se encarga de convertilo en diccionario
-#    return person
-#pero para devolver los dos JSON que queremos, tenemos que juntarlos en un solo diccionario
-#se debe de hacer de manera explicita
+
     results = person.dict()
     results.update(location.dict())
-#se podria haber juntado la siguiente manera, pero FASTAPI no soporta esa sintanxis aun
-# person.dict()&location.dict()    
     return results
 
-#Tipos de datos clasicos
-#str, int, float, bool
-#tipos de datos especiales
-#Enum
-#HttpUrl: www.platzi.com / http://miproject.com
-#FilePath: c:/windows/system/archivo.txt
-#DirectoryPath /windows/system/archivo.txt
-#EmailStr
-#Payment Card Number
-#IPvAnyAddress
-#NegativeFloat
-#PositiveFloat
-#NegativeInt
-#PositiveInt
-#https://pydantic-docs.helpmanual.io/usage/types/#pydantic-types
+
+@app.post(
+    path="/login",
+    response_model=LoginOut,
+    status_code=status.HTTP_200_OK
+)
+def login(username: str = Form(...), password: str = Form(...)):
+    return LoginOut(username=username)
+
+
+@app.post(
+    path="/contact",
+    status_code=status.HTTP_200_OK,
+)
+def contact(
+    first_name: str = Form(
+        ...,
+        max_length=20,
+        min_length=1
+    ),
+    last_name: str = Form(
+        ...,
+        max_length=20,
+        min_length=1
+    ),
+    email: EmailStr = Form(...),
+    message: str = Form(
+        ...,
+        min_length=5,
+    ),
+    user_agent: Optional[str] = Header(default=None),
+    ads: Optional[str] = Cookie(default=None)
+
+):
+    return user_agent
+
+
+#Status code principales:
+#100 - information
+#200 - ok
+#--201 - created
+#--204 - no content
+#300 - Redirecting
+#400 - Client error
+#--404 - no exist - no existe la pagina
+#--422 - validation error - el valor enviado no es correcto
+#500 - Server Error
+
+
+@app.post(
+    path="/post_image"
+)
+def post_image(
+    image: UploadFile = File(...)
+):
+    return {
+        "Filename": image.filename,
+        "Format": image.content_type,
+        "Size(kb)": round(len(image.file.read())/1024,ndigits=2) 
+    }

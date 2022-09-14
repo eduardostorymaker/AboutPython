@@ -51,6 +51,12 @@ pip install fastapi uvicorn
 #crear un archivo main.py para que se ejecute en el servidor
 from fastapi import FastAPI
 
+#instalar dependencia para formularios
+pip install python-multipart
+
+#instalar dependencia para verificacino de email
+pip install pydantic[email]
+
 ##########
 app = FastAPI()
 @app.get("/")
