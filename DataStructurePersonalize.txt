@@ -1,0 +1,161 @@
+########
+Stacks
+LIFO (Last In, First Out)
+
+class Stack:
+    def __init__(self):
+        self.items=[]
+
+    def is_empty(self):
+        return self.items==[]
+    
+    def push(self,item):
+        self.items.insert(0,item)
+
+    def pop(self):
+        return self.items.pop(0)
+
+    def print_stack(self):
+        print(self.items)
+
+stack = Stack()
+
+stack.push(5)
+stack.push(6)
+stack.push(7)
+stack.push(8)
+stack.pop()
+stack.print_stack()
+
+########
+Queues
+
+FIFO (First in First Out)
+The process of adding new elements into the queue is called enqueue.
+The process of removal of an element from the queue is called dequeue.
+
+class Queue:
+    def __init__(self):
+        self.items=[]
+
+    def is_empty(self):
+        return self.items==[]
+    
+    def push(self,item):
+        self.items.insert(0,item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def print_stack(self):
+        print(self.items)
+
+stack = Queue()
+
+stack.push(5)
+stack.push(6)
+stack.push(7)
+stack.push(8)
+stack.pop()
+stack.print_stack()
+
+########
+Linked Lists
+
+is a sequence of nodes where each node stores its own data and a link to the next node.
+One node links to another forming what can be thought of as a linked chain
+The first node is called the head, and it's used as the starting point for any iteration through the list. The last node must have its link pointing to None to determine the end of the list.
+
+#Nota para entender: se anidan los Node(data, Node(data,Node(data,...)))
+
+class Node:
+    def __init__(self,data,next):
+        self.data = data
+        self.next = next
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def add_at_front(self,data):
+        self.head = Node(data, self.head)
+
+    def add_at_end(self,data):
+        if not self.head:
+            self.head = Node(data,None)
+            #retun
+        else:
+            curr = self.head
+            while curr.next:
+                curr = curr.next
+            curr.next = Node(data,None)
+    
+    def get_last_node(self):
+        n = self.head
+        while(n.next != None):
+            n = n.next
+        return n.data
+    
+    def print_list(self):
+        n = self.head
+        while n != None:
+            print(n.data, end = " => ")
+            n=n.next
+        print()
+
+link = LinkedList()
+link.add_at_front(2)
+link.add_at_front(3)
+link.add_at_front(4)
+link.add_at_front(5)
+link.add_at_front(6)
+link.add_at_end(1)
+link.print_list()
+print(link.get_last_node())
+
+#6 => 5 => 4 => 3 => 2 => 1 =>
+#1
+
+
+
+########
+Graphs
+
+are used to represent many real-life applications like networks, transportation paths of a city, and social network connections.
+A graph is a set of connected nodes where each node is called a Vertex and the connection between two of them is called an Edge.
+
+class Graph():
+    def __init__(self,size):
+        self.adj = [[0]*size for i in range(size)]
+        self.size = size
+
+    def add_edge(self, orig, dest):
+        if orig > self.size or dest > self.size or orig < 0 or dest < 0:
+            print("Invalid Edge")
+        else:
+            self.adj[orig-1][dest-1] = 1
+            self.adj[dest-1][orig-1] = 1
+        
+    def remove_edge(self, orig, dest):
+        if orig > self.size or dest > self.size or orig < 0 or dest < 0:
+            print("Invalid Edge")
+        else:
+            self.adj[orig-1][dest-1] = 0
+            self.adj[dest-1][orig-1] = 0
+    
+    def display(self):
+        for row in self.adj:
+            print()
+            for val in row:
+                print('{:4}'.format(val),end="")
+
+
+graph = Graph(4)
+
+graph.display()
+graph.add_edge(1,1)
+graph.add_edge(3,3)
+graph.add_edge(2,2)
+graph.remove_edge(1,1)
+print()
+graph.display()
