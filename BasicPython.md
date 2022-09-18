@@ -23,3 +23,11 @@ Let's go to learn basic Python
 | y | and |
 | o | or |
 | negacion | not |
+
+
+
+```sh
+numero1 = input("escribe un numero: ")
+numero2 = input("escribe otro numero: ")
+```
+
