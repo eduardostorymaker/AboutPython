@@ -7,6 +7,7 @@ Let's go to learn basic Python
 ### Math
 
 | Operación | Operador  | 
+| ------ | ------ |
 | suma  | + |
 | resta | - |
 | multiplicacion | * |
@@ -16,6 +17,9 @@ Let's go to learn basic Python
 | potencia | ** |
 
 ### Logic
+
+| Operación | Operador  | 
+| ------ | ------ |
 | y | and |
 | o | or |
 | negacion | not |
