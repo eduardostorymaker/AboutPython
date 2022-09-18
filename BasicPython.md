@@ -6,8 +6,8 @@ Let's go to learn basic Python
 
 ### Math
 
-| Operación | Operador | 
-| suma | + |
+| Operación | Operador  | 
+| suma  | + |
 | resta | - |
 | multiplicacion | * |
 | divison | / |
