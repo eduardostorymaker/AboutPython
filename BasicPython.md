@@ -1,4 +1,9 @@
 # Basic Python
+```{python}
+nombre = "Hola"
+nombre.upper()
+print(nombre)
+```
 
 Let's go to learn basic Python
 
