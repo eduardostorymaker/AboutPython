@@ -72,8 +72,9 @@ f'cadena de texto {variable}'
 ## Ranges
 
 range(inicio,fin,pasos) el fin no es inclusivo, empieza del cero hasta el fin -1
-
+~~~
 [0,1,2,3,4]
+~~~
 ```sh
 list(Range(5))
 ```
