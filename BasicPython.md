@@ -71,11 +71,22 @@ f'cadena de texto {variable}'
 
 ## Ranges
 
-/range(inicio,fin,pasos) el fin no es inclusivo, empieza del cero hasta el fin -1
-list(Range(5)) /[0,1,2,3,4]
+range(inicio,fin,pasos) el fin no es inclusivo, empieza del cero hasta el fin -1
+
+[0,1,2,3,4]
+```sh
+list(Range(5))
+```
+```sh
+
 list(Range(1,5)) /[1,2,3,4]
+```
+```sh
 list(Range(1,5,2)) /[1,3]
+```
+```sh
 list(Range(7,3,-1)) /[7,6,5,4]
+```
 
 for contador in range(0,1000):
 	print(contador)
