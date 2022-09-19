@@ -6,25 +6,34 @@ Let's go to learn basic Python
 
 ### Math
 
-| Operación | Operador  | 
+| Detail | Operator  | 
 | ------ | ------ |
-| suma  | + |
-| resta | - |
-| multiplicacion | * |
-| divison | / |
-| modulo | % |
-| division entero | // |
-| potencia | ** |
+| Addition  | + |
+| Subtraction | - |
+| Multiplication | * |
+| Division | / |
+| Modulus | % |
+| Floor division | // |
+| Exponentation | ** |
+
+### Comparison
+
+| Detail | Operator  | 
+| ------ | ------ |
+| Equal | == |
+| Not equal | != |
+| Greather than | > |
+| Less than | < |
+| Greather than or equal to | >= |
+| Less than or equal to | <= |
 
 ### Logic
 
-| Operación | Operador  | 
+| Detail | Operator  | 
 | ------ | ------ |
-| y | and |
-| o | or |
-| negacion | not |
-
-
+| and | and |
+| or | or |
+| not | not |
 
 ```sh
 numero1 = input("escribe un numero: ")
