@@ -45,6 +45,7 @@ numero2 = input("escribe otro numero: ")
 ~~~
 nombre.upper()
 ~~~
+* Output: MAYUSCULAS
 ~~~
 nombre.capitalize()
 ~~~
