@@ -1,5 +1,5 @@
 # Basic Python
-```{python}
+```{python, eval = TRUE}
 nombre = "Hola"
 nombre.upper()
 print(nombre)
