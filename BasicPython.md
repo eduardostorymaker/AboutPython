@@ -42,21 +42,51 @@ numero2 = input("escribe otro numero: ")
 
 ## Strings
 
+~~~
 nombre.upper()
+~~~
+~~~
 nombre.capitalize()
+~~~
+~~~
 nombre.lower()
+~~~
+~~~
 nombre.replace('o','a')
+~~~
+~~~
 nombre.strip()
+~~~
+~~~
 nombre.strip("/n")
+~~~
+~~~
 nombre[0]
+~~~
+~~~
 nombre[2:5]
+~~~
+~~~
 nombre[1:-1] /menos uno atras y menos unp adelante
+~~~
+~~~
 nombre[:5]
+~~~
+~~~
 nombre[2:]
+~~~
+~~~
 nombre[2:5:2] /pasos de 2 en dos
+~~~
+~~~
 nombre[::] /de inicio a final
+~~~
+~~~
 nombre[::-1] /pasos de -1 revierte el texto
+~~~
+~~~
 len(nombre)
+~~~
 
 "Numbers: {0} {1} {2}". format(5, 7, 9) /Numbers: 5 7 9
 "Numbers: {x} {y} {z}". format(x=5, y=7, z=9) /Numbers: 5 7 9
