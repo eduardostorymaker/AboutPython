@@ -36,6 +36,7 @@
 
 
 ## Strings
+Functions with strings:
 ~~~
 mystring = 'test With strings'
 ~~~
@@ -55,9 +56,9 @@ mystring.lower()
 ~~~
 mystring.replace('i','a')
 ~~~
-
+#####
 Strings are lists, then we can use as lists:
-my_string[ begin: how many : steps ]
+**my_string[ begin: how many : steps ]**
 
 - How to get: 't'
 ~~~
@@ -91,7 +92,7 @@ mystring[::-1]
 ~~~
 len(mystring)
 ~~~
-
+#####
 ~~~
 mystring2 = '   this is a weird /n text     '
 ~~~
@@ -99,7 +100,7 @@ mystring2 = '   this is a weird /n text     '
 ~~~
 mystring2.strip()
 ~~~
-
+#####
 We can use variables in strings:
 If we want 'Numbers: 5 7 9':
 ~~~
@@ -114,12 +115,13 @@ y=7
 z=9
 f'Numbers: {x} {y} {z}'
 ~~~
-
+#####
 We also can create a string from a list:
 If we want 'one, two, three':
 ~~~
 mystring3 = ", ".join(["one","two","three"])
 ~~~
+#####
 We also can create a list from a string:
 If we want ['one', 'two', 'three']:
 ~~~
