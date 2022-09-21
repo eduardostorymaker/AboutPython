@@ -57,7 +57,7 @@ mystring.lower()
 mystring.replace('i','a')
 ~~~
 #####
-Strings are lists, then we can use as lists:
+Strings are lists, then we can use them as lists:
 **my_string[ begin: how many : steps ]**
 
 - How to get: 't'
