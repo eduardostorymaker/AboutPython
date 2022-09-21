@@ -1,11 +1,5 @@
 # Basic Python
-```{python, eval = TRUE}
-nombre = "Hola"
-nombre.upper()
-print(nombre)
-```
-
-Let's go to learn basic Python
+> Let's go to learn basic Python - 2022
 
 ## Operators
 
@@ -40,69 +34,98 @@ Let's go to learn basic Python
 | or | or |
 | not | not |
 
-```sh
-numero1 = input("escribe un numero: ")
-numero2 = input("escribe otro numero: ")
-```
 
 ## Strings
-
 ~~~
-nombre.upper()
+mystring = 'test With strings'
 ~~~
-* Output: MAYUSCULAS
+- How to do: 'TEST WITH STRINGS'
 ~~~
-nombre.capitalize()
+mystring.upper()
 ~~~
+- How to do: 'Test with strings'
 ~~~
-nombre.lower()
+mystring.capitalize()
 ~~~
+- How to do: 'test with strings'
 ~~~
-nombre.replace('o','a')
+mystring.lower()
 ~~~
+- How to do: 'test wath strangs'
 ~~~
-nombre.strip()
-~~~
-~~~
-nombre.strip("/n")
-~~~
-~~~
-nombre[0]
-~~~
-~~~
-nombre[2:5]
-~~~
-~~~
-nombre[1:-1] /menos uno atras y menos unp adelante
-~~~
-~~~
-nombre[:5]
-~~~
-~~~
-nombre[2:]
-~~~
-~~~
-nombre[2:5:2] /pasos de 2 en dos
-~~~
-~~~
-nombre[::] /de inicio a final
-~~~
-~~~
-nombre[::-1] /pasos de -1 revierte el texto
-~~~
-~~~
-len(nombre)
+mystring.replace('i','a')
 ~~~
 
-"Numbers: {0} {1} {2}". format(5, 7, 9) /Numbers: 5 7 9
-"Numbers: {x} {y} {z}". format(x=5, y=7, z=9) /Numbers: 5 7 9
+Strings are lists, then we can use as lists:
+my_string[ begin: how many : steps ]
 
-texto = ", ".join(["uno","dos","tres"]) / uno, dos, tres
-texto.split(", ") = ["uno","dos","tres"]
+- How to get: 't'
+~~~
+mystring[0]
+~~~
+- How to get: 'st W'
+~~~
+mystring[2:6]
+~~~
+- How to get: 'est With string'
+~~~
+mystring[1:-1]
+~~~
+- How to get: 'test '
+~~~
+mystring[:5]
+~~~
+- How to get: 'st With strings'
+~~~
+mystring[2:]
+~~~
+- How to get: 'ts ihsrns'
+~~~
+mystring[::2]
+~~~
+- How to get: 'sgnirts htiW tset'
+~~~
+mystring[::-1]
+~~~
+- What is the lenght? 
+~~~
+len(mystring)
+~~~
 
-cadena = "texto largo"
-"texto" in cadena /True
-f'cadena de texto {variable}'
+~~~
+mystring2 = '   this is a weird /n text     '
+~~~
+- How to do: 'this is a weird /n text'
+~~~
+mystring2.strip()
+~~~
+
+We can use variables in strings:
+If we want 'Numbers: 5 7 9':
+~~~
+"Numbers: {0} {1} {2}". format(5, 7, 9)
+~~~
+~~~
+"Numbers: {x} {y} {z}". format(x=5, y=7, z=9)
+~~~
+~~~
+x=5
+y=7
+z=9
+f'Numbers: {x} {y} {z}'
+~~~
+
+We also can create a string from a list:
+If we want 'one, two, three':
+~~~
+mystring3 = ", ".join(["one","two","three"])
+~~~
+We also can create a list from a string:
+If we want ['one', 'two', 'three']:
+~~~
+mystring3.split(", ")
+~~~
+
 
 
 ## Ranges
