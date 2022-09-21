@@ -212,11 +212,11 @@ mylist.count(5)
 ~~~
 - Remove the number 7: **[9, 1, 2]**
 ~~~
-mylist.remove(7) /remueve el primer item que encuentra con ese valor
+mylist.remove(7)
 ~~~
 - Revert the list: **[2, 1, 9]**
 ~~~
-mylist.reverse() /invierte el orden de la lista
+mylist.reverse()
 ~~~
 - Sort the list: **[1, 2, 9]**
 ~~~
@@ -232,37 +232,59 @@ mylist.clear()
 ~~~
 
 ## Tuples
-
-tupla = (1,2,3,4,5) /es estatico, no se puede modificar
-tupla2 = "uno", "dos", "tres"
-/desempaquetar valores
-a,b,c = tupla2 / a="uno", b="dos", c="tres"
-a,b,*c,d = [1,2,3,4,5,6,7,8,9] / a=1, b=2, c=[3, 4, 5, 6, 7, 8], d=9
-tupla = (1,) / si se ingresa integer = (1), resulta un integer, la tupla debe de tener comas (tupla de un valor)
+How about tuples, they are inmutables, you can't change the values, but you can assign other tuple.
+~~~
+mytuple = (1,2,3,4,5)
+~~~
+~~~
+mytuple2 = "uno", "dos", "tres"
+~~~
+unpackage the values: a="uno", b="dos", c="tres"
+~~~
+a,b,c = mytuple2  
+~~~
+unpackage the values: a=1, b=2, c=[3, 4, 5, 6, 7, 8], d=9
+~~~
+a,b,*c,d = [1,2,3,4,5,6,7,8,9]
+~~~
 
 
 ## Sets
-
-//no tiene valores repetidos y son inmutables
-miset = {1,1,1,1,1,1,1,2,3,4,5,5,5,5,5,5} /{1, 2, 3, 4, 5}
-3 in miset / true
-/añadir 1 elemento
-miset.add(6) /{1, 2, 3, 4, 5, 6}
-/eliminar un elemento existente, si no esta en la lista envia error
-miset.remove(2) //{1, 3, 4, 5, 6}
-/eliminar un elemento inexistente, si esta en la lista, lo borra, si no esta, devuelve el mismo set
-miset.discard(2) 
-/elimina un elemento aleatorio
-miset.pop()
-/borra todo el set
-miset.clear()
+How about sets, they don't have repeated values.
+If i assign repeated values, the result will be unrepeated values.
+~~~
+myset = {1,1,1,1,1,1,1,2,3,4,5,5,5,5,5,5}
+~~~
+~~~
+{1, 2, 3, 4, 5}
+~~~
+- Add number 6: **{1, 2, 3, 4, 5, 6}**
+~~~
+myset.add(6)
+~~~
+- Remove number 2 (if it does't exist, the result will be an error): **{1, 3, 4, 5, 6}**
+~~~
+myset.remove(2)
+~~~
+- Discard number 2 (if it does't exist, the result will be the same set): **{1, 3, 4, 5, 6}**
+~~~
+myset.discard(2) 
+~~~
+- Remove a random element
+~~~
+myset.pop()
+~~~
+- Clear all the set: **{}**
+~~~
+myset.clear()
+~~~
 
 /añadir multiples elementos
-miset.update([1,2,3])
-miset.update((1,2,3),{4,5})
+myset.update([1,2,3])
+myset.update((1,2,3),{4,5})
 
 /para crear un set vacio se debe de utilizar un constructor, {}, esto crea un diccionario vacio
-miset = set()
+myset = set()
 
 uno = {1,2,3,4,5,6}
 dos = {4,5,6,7,8,9}
