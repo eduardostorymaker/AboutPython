@@ -116,14 +116,14 @@ z=9
 f'Numbers: {x} {y} {z}'
 ~~~
 #####
-We also can create a string from a list:
-If we want 'one, two, three':
+We also can create a string from a list.
+If we want **'one, two, three'**:
 ~~~
 mystring3 = ", ".join(["one","two","three"])
 ~~~
 #####
-We also can create a list from a string:
-If we want ['one', 'two', 'three']:
+We also can create a list from a string.
+If we want **['one', 'two', 'three']**:
 ~~~
 mystring3.split(", ")
 ~~~
