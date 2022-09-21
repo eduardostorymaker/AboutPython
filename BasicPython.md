@@ -130,59 +130,106 @@ If we want **['one', 'two', 'three']**:
 mystring3.split(", ")
 ~~~
 
-
+- How to print all letters from string
+~~~
+mystring4 = "print this string"
+for letter in mystring4:
+	print(letter)
+~~~
 
 ## Ranges
 
-range(inicio,fin,pasos) el fin no es inclusivo, empieza del cero hasta el fin -1
+**range(begin: how many : steps)**
+- How to get: **[0,1,2,3,4]**
 ~~~
-[0,1,2,3,4]
-~~~
-```sh
 list(Range(5))
-```
-```sh
+~~~
+- How to get: **[1,2,3,4]**
+~~~
+list(Range(1,5))
+~~~
+- How to get: **[1,3]**
+~~~
+list(Range(1,5,2))
+~~~
+- How to get: **[7,6,5,4]**
+~~~
+list(Range(7,3,-1))
+~~~
 
-list(Range(1,5)) /[1,2,3,4]
-```
-```sh
-list(Range(1,5,2)) /[1,3]
-```
-```sh
-list(Range(7,3,-1)) /[7,6,5,4]
-```
+- How to print numbers from 0 to 9
+~~~
+for counter in range(0,10):
+	print(counter)
+~~~
 
-for contador in range(0,1000):
-	print(contador)
-
-for letra in nombre:
-	print(letra)
 
 ## Lists
 
-lista = [1,2,5,7]
-5 in lista /true
-lista.append(9) /agrega el 9 al final
-lista.pop(2) /borra el objeto de posicion 2
-lista.pop() /borra el ultimo numero
-lista.insert(0,9) /inserta 9 en la posicion 9
-lista.index(2) /devuelve el indice del primer valor 2 -> 1 
-lista[::-1] /concatena listas
-lista*5 /multiplica la lista
-max(lista) /devuelve el mayor valor -> 7
-min(lista) /devuelve el menor valor -> 1
-lista.count(5) /cuenta cuantas veces se repite el valor 5
-lista.remove(7) /remueve el primer item que encuentra con ese valor
-lista.reverse() /invierte el orden de la lista
-----
-lista.clear()
-lista.sort()
-lista.sort(revere =true)
-----
-
-a = [1,2,3]
-b = a /en este caso asigna la misma posicion de memoria a is b true, si modificas uno, se modificara el otro, no se deben igualar listas se debe de clonar
-b = list(a) /ahora son distintos objetos, tienen distintas direcciones de memoria
+Functions with lists:
+~~~
+mylist = [1,2,5,7]
+~~~
+- Add 9 at the end: **[1, 2, 5, 7, 9]**
+~~~
+mylist.append(9)
+~~~
+- Remove the thirth position: **[1, 2, 7, 9]**
+~~~
+mylist.pop(2)
+~~~
+- Remove the last position: **[1, 2, 7]**
+~~~
+mylist.pop()
+~~~
+- Insert 9 in the first position: **[9, 1, 2, 7]**
+~~~
+mylist.insert(0,9)
+~~~
+- Find the number 9 index : **0**
+~~~
+mylist.index(9)
+~~~
+- Invert the list: **[7, 2, 1, 9]**
+~~~
+mylist[::-1]
+~~~
+- Multiply the list five times: **[9, 1, 2, 7, 9, 1, 2, 7, 9, 1, 2, 7, 9, 1, 2, 7, 9, 1, 2, 7]**
+~~~
+mylist*5
+~~~
+- Find the max value: **9**
+~~~
+max(mylist)
+~~~
+- Find the min value: **1**
+~~~
+min(mylist)
+~~~
+- Count how many 5s there are in the list: **0**
+~~~
+mylist.count(5)
+~~~
+- Remove the number 7: **[9, 1, 2]**
+~~~
+mylist.remove(7) /remueve el primer item que encuentra con ese valor
+~~~
+- Revert the list: **[2, 1, 9]**
+~~~
+mylist.reverse() /invierte el orden de la lista
+~~~
+- Sort the list: **[1, 2, 9]**
+~~~
+mylist.sort()
+~~~
+- Invert sort the list: **[9, 2, 1]**
+~~~
+mylist.sort(reverse=True)
+~~~
+- Clear the list: **[]**
+~~~
+mylist.clear()
+~~~
 
 ## Tuples
 
