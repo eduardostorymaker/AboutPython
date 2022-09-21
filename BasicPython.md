@@ -59,7 +59,9 @@ mystring.replace('i','a')
 #####
 Strings are lists, then we can use them as lists:
 **my_string[ begin: how many : steps ]**
-
+~~~
+mystring = 'test With strings'
+~~~
 - How to get: 't'
 ~~~
 mystring[0]
